@@ -17,6 +17,7 @@ unionport
 --config 指定配置文件的路径 (path)
 -v 查看版本
 
+unionport -v 
 unionport -p 9999 -c  path
 unionport --port 9999 path
 
