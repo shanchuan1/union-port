@@ -62,11 +62,3 @@ module.exports= {
     interFaceMap
 }
 ```
-
-
-## 本地调试
-拉取项目至本地
-```js
-npm install -g .
-// .符号代表当前目录（current directory）。当你在项目根目录下执行这个命令时，npm将会查找当前目录下的package.json文件，并基于该文件中的信息全局安装该项目作为一个Node.js包
-```
