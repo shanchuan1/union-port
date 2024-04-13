@@ -8,9 +8,9 @@ const appProxyMiddleware = (url) => {
     target: url,
     changeOrigin: true,
     onError: (error, req, res) => {
-      console.error("Error in H5 proxy:", error);
+      console.error(`Error in ${url} proxy:`, error);
       res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end("An error occurred while trying to proxy H5 requests.");
+      res.end(`An error occurred while trying to proxy ${url} requests`);
     },
   });
 };
@@ -45,9 +45,9 @@ const interFaceProxyMiddleware = (url) => {
       [rewriteKey]: "", // 使用方括号表示法动态创建键
     },
     onError: (error, req, res) => {
-      console.error("Error in hospitalweb proxy:", error);
+      console.error( `Error in ${extractLastPath(url)} proxy:`, error);
       res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end("An error occurred while trying to proxy hospitalweb requests.");
+      res.end(`An error occurred while trying to proxy ${extractLastPath(url)} requests`);
     },
   });
 };

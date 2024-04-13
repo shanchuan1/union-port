@@ -4,7 +4,7 @@ const { validateMaps } = require('./validate');
 const {redLog} = require('./terminalLog');
 
 
-const DEFAULT_CONFIG_FILE = '.unifyportrc';
+const DEFAULT_CONFIG_FILE = '.unionportrc';
 const HOME_DIR = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 
 // 获取上次保存的配置文件路径
@@ -60,7 +60,7 @@ async function manageConfigFilePath(options) {
 
   if (!configPathToUse) {
     throw new Error(
-      redLog(`请传入指定配置文件的路径: unifyport --config '<path>'`)
+      redLog(`请传入指定配置文件的路径: unionport --config '<path>'`)
     );
   }
 

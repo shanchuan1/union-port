@@ -3,7 +3,7 @@
   "version": "1.1.2",
   "description": "🛠️ Under the same product, there exists a local area network debugging tool designed for multiple front-end applications that operate within various host environments, such as nested apps, DingTalk, HTML5 (H5) apps, and mini programs, and possess interconnected relationships among them.",
   "bin": {
-    "unionport": "./cli.js"
+    "unionport": "bin/cli.js"
   },
   "author": {
     "name": "shanchuan",
