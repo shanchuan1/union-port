@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+    <meta name="description" content="医签宝是专业的医疗行业电子签名产品。基于实名身份，为医疗机构提供平台式的电子签名服务">
+    <meta property="og:title" content="医签宝-医健行业数字化转型基础">
+    <meta property="og:url" content="https://hospital.esign.cn/">
+    <meta property="og:image" content="https://hospital.esign.cn/static/favicon.ico">
+    <meta property="og:description" content="医签宝是专业的医疗行业电子签名产品。基于实名身份，为医疗机构提供平台式的电子签名服务">
+    <!-- <link rel="icon" href="/h5/favicon.ico" /> -->
+    <link rel="icon" href="/h5/favicon.ico">
+    <link rel="stylesheet" href="/h5/static/iconfont/index.css">
+    <title>医签宝</title>
+    <script type="text/javascript" src="/h5/static/pdfjs/pdf.js"></script>
+    <script type="text/javascript" src="/h5/static/ofd.js"></script>
+    <script type="text/javascript" src="/h5/static/sdkjs/sdk.js"></script>
+  <link href="/h5/static/js/app.js" rel="preload" as="script" crossorigin="anonymous"><link href="/h5/static/js/chunk-vendors.js" rel="preload" as="script" crossorigin="anonymous">
+    <script type="text/javascript">
+      window.addEventListener("load", ()=>{
+        const {href, origin, pathname, search } = window.location;
+        const currentOrigin = origin;
+        const presetOriginLocal = 'http://localhost:9999';
+        const presetOriginNetWork = 'http://192.168.7.32:9999';
+        if (currentOrigin !== presetOriginLocal && currentOrigin !== presetOriginNetWork) {
+          window.location.href = presetOrigin + pathname + search;
+        }
+      });
+    </script>
+    </head>
+
+  <body>
+    <script>
+      // web-view下的页面内
+      function ready() {
+        console.log(window.__wxjs_environment === 'miniprogram') // true
+      }
+      if (!window.WeixinJSBridge || !WeixinJSBridge.invoke) {
+        document.addEventListener('WeixinJSBridgeReady', ready, false)
+      } else {
+        ready()
+      }
+    </script>
+    <div id="app"></div>
+
+    <!-- built files will be auto injected -->
+  <script type="text/javascript" src="/h5/static/js/chunk-vendors.js" crossorigin="anonymous"></script><script type="text/javascript" src="/h5/static/js/app.js" crossorigin="anonymous"></script>
+
+</body></html>

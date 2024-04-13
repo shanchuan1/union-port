@@ -1,0 +1,42 @@
+{
+  "name": "union-port",
+  "version": "1.1.1",
+  "description": "Under the same product, there exists a local area network debugging tool designed for multiple front-end applications that operate within various host environments, such as nested apps, DingTalk, HTML5 (H5) apps, and mini programs, and possess interconnected relationships among them.",
+  "bin": {
+    "unionport": "./cli.js"
+  },
+  "author": {
+    "name": "shanchuan",
+    "email": "1121021693@qq.com",
+    "url": "https://github.com/shanchuan1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanchuan1/union-port",
+    "directory": "union-port"
+  },
+  "bugs": {
+    "url": "https://github.com/vuejs/vue-cli/issues"
+  },
+  "keywords": [
+    "union",
+    "port"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "chalk": "^2.4.2",
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^8.0.0",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
+    "ip": "^2.0.1",
+    "node-fetch": "2"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
+  }
+}
