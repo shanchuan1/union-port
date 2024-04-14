@@ -1,3 +1,4 @@
+// 校验portConfig配置数据
 const validateMaps = ({ addressMap, interFaceMap }) => {
   // 验证addressMap和interFaceMap的存在性与非空性
   if (!addressMap || !Array.isArray(addressMap) || addressMap.length === 0) {

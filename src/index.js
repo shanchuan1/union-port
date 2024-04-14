@@ -6,9 +6,10 @@ const os = require("os"); // 引入内置的os模块来获取网络接口信息
 const ip = require("ip"); // 引入ip模块
 const {
   appProxyMiddleware,
-  interFaceProxyMiddleware,
+  getInterFaceProxy,
   assetProxyMiddleware,
 } = require("./proxyRoutes");
+const { writeFile } = require('./handleFile')
 
 const startServer = async (port, options) => {
   const {addressMap, interFaceMap} = options
@@ -27,10 +28,10 @@ const startServer = async (port, options) => {
   const app = express();
 
   /* 路由监听，返回index.html文件 */
-  app.get("/h5", (req, res) => {
-    console.log("🚀 ~ app.get ~ req:", req.originalUrl);
-    assetProxyMiddleware(req, res);
-  });
+  // app.get("/h5", (req, res) => {
+  //   console.log("🚀 ~ app.get ~ req:", req.originalUrl);
+  //   assetProxyMiddleware(req, res);
+  // });
 
   // 引入并使用代理中间件
   const useProxy = () => {
@@ -41,15 +42,22 @@ const startServer = async (port, options) => {
 
     /* 请求后端接口地址代理 */
     (interFacArray || [])?.forEach(({ interFacePath, forwardUrl }) => {
-      app.use(interFacePath, interFaceProxyMiddleware(forwardUrl));
+      // 在代理之前记录请求信息
+      app.use((req, res, next) => {
+        console.log('req.originalUrl', req.originalUrl);
+        const data = {
+          originalUrl: req.originalUrl,
+          headers: {...req.headers}
+        }
+        writeFile({data, folderPath: '/request', type: 'req', name: req.originalUrl})
+        next();
+      });
+
+      app.use(getInterFaceProxy({ interFacePath, forwardUrl }))
+      // app.use(interFacePath, interFaceProxyMiddleware(forwardUrl));
+
     });
   };
-  // app.use("/h5", appProxyMiddleware('http://localhost:8080/h5'));
-  // app.use("/local-sign", appProxyMiddleware('http://localhost:8081/local-sign'));
-
-  // app.use("/hospitalweb", interFaceProxyMiddleware('http://192.168.23.191:8097/hospitalweb'));
-  // app.use("/signapi", interFaceProxyMiddleware('http://192.168.23.191:8097/signapi'));
-
   useProxy();
 
   // 监听所有网络接口（'0.0.0.0'），而不是仅监听本地环回地址（'127.0.0.1'）

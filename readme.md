@@ -6,6 +6,13 @@ for: 同一产品下的多个前端应用，居于宿主环境(嵌套app，钉�
 - h5应用  port 8080
 - localSign应用 port 8081
 
+## 安装与使用
+``` js
+npm install -g union-port 
+
+unionport -v  // 查看命令是否安装成功
+```
+
 
 ## 脚本命令
 ```js

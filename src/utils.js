@@ -1,4 +1,5 @@
 const path = require('path');
+const _ = require('lodash');
 const fs = require('fs').promises;
 const { validateMaps } = require('./validate');
 const {redLog} = require('./terminalLog');
@@ -73,6 +74,49 @@ async function manageConfigFilePath(options) {
   return configFileContent;
 }
 
+/* 定位跳转地址并替换 */
+const findAndReplaceUrlWithInfo = (originalObj, oldUrl, newUrl) => {
+  const clonedObj = _.cloneDeep(originalObj);
+  let isHasFound = false;
+
+  const replaceUrlRecursively = (obj) => {
+    if (typeof obj === 'string' && obj.includes(oldUrl)) {
+      isHasFound = true;
+      return newUrl;
+    } else if (Array.isArray(obj)) {
+      for (let i = 0; i < obj.length; i++) {
+        obj[i] = replaceUrlRecursively(obj[i]);
+      }
+    } else if (obj && typeof obj === 'object') {
+      for (const key in obj) {
+        if (typeof obj[key] === 'string' && obj[key].includes(oldUrl)) {
+          isHasFound = true;
+          obj[key] = newUrl;
+        } else if (typeof obj[key] === 'object' || Array.isArray(obj[key])) {
+          obj[key] = replaceUrlRecursively(obj[key]);
+        }
+      }
+    }
+
+    return obj;
+  }
+
+  const modifiedObj = replaceUrlRecursively(clonedObj);
+
+  return {
+    isHasProxyUrl: isHasFound,
+    proxyData: modifiedObj,
+  };
+}
+
+/* 处理代理地址 */
+const extractBaseUrl = (urlString) => {
+  const url = new URL(urlString);
+  return `${url.protocol}//${url.host}`;
+}
+
 module.exports = {
-    manageConfigFilePath
+    manageConfigFilePath,
+    findAndReplaceUrlWithInfo,
+    extractBaseUrl
 }
